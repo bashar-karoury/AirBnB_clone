@@ -4,6 +4,8 @@
     and as entry point of project
 """
 import cmd
+from models import storage
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -49,6 +51,74 @@ class HBNBCommand(cmd.Cmd):
         """ handle an empty line command
         """
         pass
+
+    def do_create(self, line):
+        """ creates a new instance of BaseModel object
+
+            Args:
+                line (str): read line from stdin, should have one arg
+                            as the class name of BaseModel object
+        """
+        # tokenize read line
+        args = line.split()
+        if not args[0]:
+            print("** class name missing **")
+            return
+        if not isinstance(args[0], BaseModel):
+            print("** class doesn't exist **")
+            return
+        # get class from classname
+        BaseModelClass = getattr(__main__, args[0])
+        obj = BaseModelClass()
+        # save it to storage
+        storage.new(obj)
+        storage.save()
+        # print id
+        print(obj.id)
+
+    def help_create(self):
+        """ print help message of create command
+        """
+        print("Create command to create new instance of BaseModle object")
+        print("Usage:")
+        print("create [Classname]")
+
+    def do_show(self, line):
+        """ prints BaseModel object with specific id
+
+            Args:
+                line (str): read line from stdin, should have two args
+                            class name and id of object
+        """
+        # tokenize read line
+        args = line.split()
+
+        # check class name
+        if not args[0]:
+            print("** class name missing **")
+            return
+        if not isinstance(args[0], BaseModel):
+            print("** class doesn't exist **")
+            return
+
+        # check id
+        if not args[1]:
+            print("** instance id missing **")
+            return
+        # get all dictionary
+        all_objs = storage.all()
+        obj_key = args[0] + "." + args[1]
+        if obj_key in all_objs:
+            print(all_obj[obj_key])
+        else:
+            print("** no instance found **")
+
+    def help_show(self):
+        """ print help message of show command
+        """
+        print("Show command to prints an instance with id")
+        print("Usage:")
+        print("show [Classname] [id]")
 
 
 if __name__ == '__main__':
