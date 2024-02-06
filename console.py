@@ -120,6 +120,37 @@ class HBNBCommand(cmd.Cmd):
         print("Usage:")
         print("show [Classname] [id]")
 
+    def do_all(self, line):
+        """ prints all objects based or not on class name
+
+            Args:
+                line (str): read line from stdin, may be empty or have one arg
+                            as class name
+        """
+        # tokenize read line
+        args = line.split()
+
+        # check class name if found
+        if not args[0]:
+            if not isinstance(args[0], BaseModel):
+                print("** class doesn't exist **")
+                return
+        # get all dictionary
+        all_objs = storage.all()
+        if args[0]:
+            # there is class name provided
+            print([all_objs[k] for k in all_objs if args[0] + "." in k])
+        else:
+            print(list(all_objs.values()))
+
+    def help_all(self):
+        """ Prints all string representation of all instances based
+            or not on the class name
+        """
+        print("all command to all objects of class if provided")
+        print("Usage:")
+        print("all [Classname]")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
