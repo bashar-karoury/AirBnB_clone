@@ -61,15 +61,20 @@ class HBNBCommand(cmd.Cmd):
         """
         # tokenize read line
         args = line.split()
-        if not args[0]:
+        # check class name
+        if not args:
             print("** class name missing **")
             return
-        if not isinstance(args[0], BaseModel):
+        # check if first arg represent a valid class
+        try:
+            if not isinstance(eval(args[0] + "()"), BaseModel):
+                print("** class doesn't exist **")
+                return
+        except NameError:
             print("** class doesn't exist **")
             return
-        # get class from classname
-        BaseModelClass = getattr(__main__, args[0])
-        obj = BaseModelClass()
+
+        obj = eval(args[0] + "()")
         # save it to dictionary of objects
         storage.new(obj)
 
@@ -95,24 +100,28 @@ class HBNBCommand(cmd.Cmd):
         """
         # tokenize read line
         args = line.split()
-
         # check class name
-        if not args[0]:
+        if not args:
             print("** class name missing **")
             return
-        if not isinstance(args[0], BaseModel):
+        # check if first arg represent a valid class
+        try:
+            if not isinstance(eval(args[0] + "()"), BaseModel):
+                print("** class doesn't exist **")
+                return
+        except NameError:
             print("** class doesn't exist **")
             return
 
         # check id
-        if not args[1]:
+        if len(args) < 2:
             print("** instance id missing **")
             return
         # get all dictionary
         all_objs = storage.all()
         obj_key = args[0] + "." + args[1]
         if obj_key in all_objs:
-            print(all_obj[obj_key])
+            print(all_objs[obj_key])
         else:
             print("** no instance found **")
 
@@ -132,15 +141,19 @@ class HBNBCommand(cmd.Cmd):
         """
         # tokenize read line
         args = line.split()
-
-        # check class name if found
-        if not args[0]:
-            if not isinstance(args[0], BaseModel):
+        # check class name
+        if args:
+            # check if first arg represent a valid class
+            try:
+                if not isinstance(eval(args[0] + "()"), BaseModel):
+                    print("** class doesn't exist **")
+                    return
+            except NameError:
                 print("** class doesn't exist **")
                 return
         # get all dictionary
         all_objs = storage.all()
-        if args[0]:
+        if args:
             # there is class name provided
             print([all_objs[k] for k in all_objs if args[0] + "." in k])
         else:
@@ -165,15 +178,19 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
 
         # check class name
-        if not args[0]:
+        if not args:
             print("** class name missing **")
             return
-        if not isinstance(args[0], BaseModel):
+        try:
+            if not isinstance(eval(args[0] + "()"), BaseModel):
+                print("** class doesn't exist **")
+                return
+        except NameError:
             print("** class doesn't exist **")
             return
 
         # check id presence
-        if not args[1]:
+        if len(args) < 2:
             print("** instance id missing **")
             return
         # get all dictionary
@@ -186,12 +203,12 @@ class HBNBCommand(cmd.Cmd):
         obj = all_objs[obj_key]
 
         # check attribute name presence
-        if not args[2]:
+        if len(args) < 3:
             print("** attribute name missing **")
             return
 
         # check attribute value presence
-        if not args[3]:
+        if len(args) < 4:
             print("** value missing **")
             return
 
@@ -219,15 +236,19 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
 
         # check class name
-        if not args[0]:
+        if not args:
             print("** class name missing **")
             return
-        if not isinstance(args[0], BaseModel):
+        try:
+            if not isinstance(eval(args[0] + "()"), BaseModel):
+                print("** class doesn't exist **")
+                return
+        except NameError:
             print("** class doesn't exist **")
             return
 
         # check id presence
-        if not args[1]:
+        if len(args) < 2:
             print("** instance id missing **")
             return
         # get all dictionary
