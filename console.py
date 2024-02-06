@@ -70,9 +70,12 @@ class HBNBCommand(cmd.Cmd):
         # get class from classname
         BaseModelClass = getattr(__main__, args[0])
         obj = BaseModelClass()
-        # save it to storage
+        # save it to dictionary of objects
         storage.new(obj)
+
+        # save changes to file
         storage.save()
+
         # print id
         print(obj.id)
 
@@ -150,6 +153,61 @@ class HBNBCommand(cmd.Cmd):
         print("all command to all objects of class if provided")
         print("Usage:")
         print("all [Classname]")
+
+    def do_update(self, line):
+        """ Update attribute of object of class with specific id
+
+            Args:
+                line (str): read line from stdin, should have four args
+                            class name, id, attribute name, attribute value
+        """
+        # tokenize read line
+        args = line.split()
+
+        # check class name
+        if not args[0]:
+            print("** class name missing **")
+            return
+        if not isinstance(args[0], BaseModel):
+            print("** class doesn't exist **")
+            return
+
+        # check id presence
+        if not args[1]:
+            print("** instance id missing **")
+            return
+        # get all dictionary
+        all_objs = storage.all()
+        obj_key = args[0] + "." + args[1]
+        if not obj_key in all_objs:
+            print("** no instance found **")
+            return
+        # get object reference
+        obj = all_objs[obj_key]
+
+        # check attribute name presence
+        if not args[2]:
+            print("** attribute name missing **")
+            return
+
+        # check attribute value presence
+        if not args[3]:
+            print("** value missing **")
+            return
+
+        # set attribute with given value
+        setattr(obj, args[2], args[3])
+
+        # save changes to file
+        storage.save()
+
+    def help_update(self):
+        """ print help message of update command
+        """
+        print("Update command to update or set attribute of object")
+        print("Usage:")
+        print("update [Classname] [id] [attribute name] [attribute value]")
+
 
 
 if __name__ == '__main__':
