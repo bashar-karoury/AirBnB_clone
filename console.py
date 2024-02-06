@@ -179,7 +179,7 @@ class HBNBCommand(cmd.Cmd):
         # get all dictionary
         all_objs = storage.all()
         obj_key = args[0] + "." + args[1]
-        if not obj_key in all_objs:
+        if obj_key not in all_objs:
             print("** no instance found **")
             return
         # get object reference
@@ -208,7 +208,6 @@ class HBNBCommand(cmd.Cmd):
         print("Usage:")
         print("update [Classname] [id] [attribute name] [attribute value]")
 
-
     def do_destroy(self, line):
         """ Deletes an instance based on the class name and id
 
@@ -234,7 +233,7 @@ class HBNBCommand(cmd.Cmd):
         # get all dictionary
         all_objs = storage.all()
         obj_key = args[0] + "." + args[1]
-        if not obj_key in all_objs:
+        if obj_key not in all_objs:
             print("** no instance found **")
             return
         # delete object
@@ -249,7 +248,6 @@ class HBNBCommand(cmd.Cmd):
         print("Destroy command to delete object")
         print("Usage:")
         print("destroy [Classname] [id]")
-
 
 
 if __name__ == '__main__':
