@@ -270,6 +270,54 @@ class HBNBCommand(cmd.Cmd):
         print("Usage:")
         print("destroy [Classname] [id]")
 
+    
+    def default(self, line):
+        """ handler of other Commands
+
+            Args:
+                line (str): input from user
+        """
+        # parse line into '.' separeted words
+        args = line.split('.')
+        if len(args) != 2:
+            print("*** Unknown syntax: {}".format(line))
+            return
+        Class_name, call_line = args
+        # validate class name
+        try:
+            if not isinstance(eval(Class_name + "()"), BaseModel):
+                print("** class doesn't exist **")
+                return
+        except NameError:
+            print("** class doesn't exist **")
+            return
+        # validate call
+        # strip call from arguments
+        call, args_list = HBNBCommand.extract_call_and_args(call_line)
+        print(call)
+        print(args_list) 
+        print("Yaaaaaaaay")
+
+    
+    @staticmethod
+    def extract_call_and_args(call_line):
+        """ static method to extract call and argumetns out of Class
+            based commands
+
+            Args:
+                call_line (str): call line after the '.'
+        
+            Return:
+                tuple: contains the call and list of arguments to the call
+        """
+        i = call_line.find("(")
+        if i == -1:
+            return (None, None)
+        call = call_line[:i]
+        args = call_line[i + 1:].strip(")")
+        args_list = [arg.strip() for arg in args.split(",")]
+        return (call, args_list)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
+
