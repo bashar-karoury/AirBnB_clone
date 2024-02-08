@@ -75,6 +75,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         obj = eval(args[0] + "()")
+        print(type(obj))
         # save it to dictionary of objects
         storage.new(obj)
 
@@ -117,6 +118,9 @@ class HBNBCommand(cmd.Cmd):
         if len(args) < 2:
             print("** instance id missing **")
             return
+        # reload first
+        storage.reload()
+
         # get all dictionary
         all_objs = storage.all()
         obj_key = args[0] + "." + args[1]
@@ -151,6 +155,9 @@ class HBNBCommand(cmd.Cmd):
             except NameError:
                 print("** class doesn't exist **")
                 return
+        # reload from file
+        storage.reload()
+
         # get all dictionary
         all_objs = storage.all()
         if args:
@@ -193,15 +200,22 @@ class HBNBCommand(cmd.Cmd):
         if len(args) < 2:
             print("** instance id missing **")
             return
+        # reload from file
+        print("reloading")
+        storage.reload()
+
         # get all dictionary
         all_objs = storage.all()
+        print(all_objs) 
         obj_key = args[0] + "." + args[1]
+        print(obj_key)
         if obj_key not in all_objs:
             print("** no instance found **")
             return
         # get object reference
         obj = all_objs[obj_key]
-
+        print("obj_key = {} with type {}".format(obj_key, type(obj_key)))
+        print("obj = {} with type {}".format(obj, type(obj)))
         # check attribute name presence
         if len(args) < 3:
             print("** attribute name missing **")
@@ -251,6 +265,9 @@ class HBNBCommand(cmd.Cmd):
         if len(args) < 2:
             print("** instance id missing **")
             return
+        # reload from file
+        storage.reload()
+
         # get all dictionary
         all_objs = storage.all()
         obj_key = args[0] + "." + args[1]
@@ -412,6 +429,10 @@ class HBNBCommand(cmd.Cmd):
         if len(args_list) < 1:
             print("** instance id missing **")
             return
+        # strip quotation marks from id
+        # args_list[0].replace('"','')
+        # reload to update dict of objects
+        storage.reload()
         # get all dictionary
         all_objs = storage.all()
         obj_key = class_name + "." + args_list[0]
@@ -420,7 +441,7 @@ class HBNBCommand(cmd.Cmd):
             return
         # get object reference
         obj = all_objs[obj_key]
-
+        
         # check attribute name presence
         if len(args_list) < 2:
             print("** attribute name missing, No dictionary is found **")
@@ -431,12 +452,18 @@ class HBNBCommand(cmd.Cmd):
         if type(eval(args_list[1])) == dict:
             attr_dict = eval(args_list[1])
             print(attr_dict)
+            for key, value in attr_dict.items():
+                print("{}:{}".format(key, value))
+                setattr(obj, key, value)
         else:
             # check attribute value presence
             if len(args_list) < 3:
                 print("** value missing **")
                 return
             # set attribute with given value
+            print("type of obj is {}".format(type(obj))) 
+            args_list[1] = args_list[1].replace('"','')
+            args_list[2] = args_list[2].replace('"','')
             setattr(obj, args_list[1], args_list[2])
 
         # save changes to file
@@ -471,7 +498,7 @@ class HBNBCommand(cmd.Cmd):
         # strip leading whitspaces and quotation marks if found
         for i in range(len(args_list)):
             args_list[i] = args_list[i].strip()
-            args_list[i] = args_list[i].replace('"','')
+            # args_list[i] = args_list[i].replace('"','')
         return (call, args_list)
 
 if __name__ == '__main__':
