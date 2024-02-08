@@ -298,6 +298,8 @@ class HBNBCommand(cmd.Cmd):
         # check call
         if call == "all":
             HBNBCommand.all(class_name)
+        elif call == "count":
+            HBNBCommand.count(class_name)
         elif call == "show":
             HBNBCommand.show(class_name, args_list)
         elif call == "create":
@@ -305,7 +307,7 @@ class HBNBCommand(cmd.Cmd):
         elif call == "destroy":
             HBNBCommand.destroy(class_name, args_list)
         elif call == "update":
-            HBNBCommand.update()
+            HBNBCommand.update(class_name, args_list)
         else:
             print("undefined call")
 
@@ -322,6 +324,20 @@ class HBNBCommand(cmd.Cmd):
         # there is class name provided
         print([all_objs[k] for k in all_objs if class_name + "." in k])
  
+    @staticmethod    
+    def count(class_name):
+        """ helper function to count all objects of specific class
+            
+            Args:
+                class_name (str): name of class
+        """
+        # get all dictionary
+        all_objs = storage.all()
+
+        # there is class name provided
+        print(len([all_objs[k] for k in all_objs if class_name + "." in k]))
+ 
+
     @staticmethod    
     def create(class_name):
         """ helper function to list all objects of specific class
@@ -383,6 +399,46 @@ class HBNBCommand(cmd.Cmd):
 
         # save changes to file
         storage.save()        
+ 
+    @staticmethod    
+    def update(class_name, args_list):
+        """ helper function to update object with specific id
+            
+            Args:
+                class_name (str): name of class
+                args_list (list): list of arguments provided to update
+        """
+        # check id presence
+        if len(args_list) < 1:
+            print("** instance id missing **")
+            return
+        # get all dictionary
+        all_objs = storage.all()
+        obj_key = class_name + "." + args_list[0]
+        if obj_key not in all_objs:
+            print("** no instance found **")
+            return
+        # get object reference
+        obj = all_objs[obj_key]
+
+        # check attribute name presence
+        if len(args_list) < 2:
+            print("** attribute name missing **")
+            return
+
+        # check attribute value presence
+        if len(args_list) < 3:
+            print("** value missing **")
+            return
+
+        # set attribute with given value
+        print(obj)
+        print(type(obj))
+        setattr(obj, args_list[1], args_list[2])
+
+        # save changes to file
+        storage.save()
+
                        
     @staticmethod
     def extract_call_and_args(call_line):
@@ -402,10 +458,8 @@ class HBNBCommand(cmd.Cmd):
         args = call_line[i + 1:].strip(")")
         args_list = [arg.strip() for arg in args.split(",")]
         # arguments may be passed with quotation marks, they should be striped
-        print(args_list)
         for i in range(len(args_list)):
             args_list[i] = args_list[i].replace('"', '')
-        print(args_list)
         return (call, args_list)
 
 if __name__ == '__main__':
