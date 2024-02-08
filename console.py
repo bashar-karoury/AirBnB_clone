@@ -282,10 +282,10 @@ class HBNBCommand(cmd.Cmd):
         if len(args) != 2:
             print("*** Unknown syntax: {}".format(line))
             return
-        Class_name, call_line = args
+        class_name, call_line = args
         # validate class name
         try:
-            if not isinstance(eval(Class_name + "()"), BaseModel):
+            if not isinstance(eval(class_name + "()"), BaseModel):
                 print("** class doesn't exist **")
                 return
         except NameError:
@@ -294,11 +294,96 @@ class HBNBCommand(cmd.Cmd):
         # validate call
         # strip call from arguments
         call, args_list = HBNBCommand.extract_call_and_args(call_line)
-        print(call)
-        print(args_list) 
-        print("Yaaaaaaaay")
+        
+        # check call
+        if call == "all":
+            HBNBCommand.all(class_name)
+        elif call == "show":
+            HBNBCommand.show(class_name, args_list)
+        elif call == "create":
+            HBNBCommand.create(class_name)
+        elif call == "destroy":
+            HBNBCommand.destroy(class_name, args_list)
+        elif call == "update":
+            HBNBCommand.update()
+        else:
+            print("undefined call")
 
-    
+    @staticmethod    
+    def all(class_name):
+        """ helper function to list all objects of specific class
+            
+            Args:
+                class_name (str): name of class
+        """
+        # get all dictionary
+        all_objs = storage.all()
+
+        # there is class name provided
+        print([all_objs[k] for k in all_objs if class_name + "." in k])
+ 
+    @staticmethod    
+    def create(class_name):
+        """ helper function to list all objects of specific class
+            
+            Args:
+                class_name (str): name of class
+        """
+
+        obj = eval(class_name + "()")
+        # save it to dictionary of objects
+        storage.new(obj)
+
+        # save changes to file
+        storage.save()
+
+        # print id
+        print(obj.id) 
+
+    @staticmethod    
+    def show(class_name, args_list):
+        """ helper function to print object with specific id
+            
+            Args:
+                class_name (str): name of class
+                args_list (list): list of arguments provided to show
+        """
+        # check id
+        if len(args_list) < 1:
+            print("** instance id missing **")
+            return
+        # get all dictionary
+        all_objs = storage.all()
+        obj_key = class_name + "." + args_list[0]
+        if obj_key in all_objs:
+            print(all_objs[obj_key])
+        else:
+            print("** no instance found **")   
+  
+    @staticmethod    
+    def destroy(class_name, args_list):
+        """ helper function to destroy object with specific id
+            
+            Args:
+                class_name (str): name of class
+                args_list (list): list of arguments provided to show
+        """
+       # check id presence
+        if len(args_list) < 1:
+            print("** instance id missing **")
+            return
+        # get all dictionary
+        all_objs = storage.all()
+        obj_key = class_name + "." + args_list[0]
+        if obj_key not in all_objs:
+            print("** no instance found **")
+            return
+        # delete object
+        del all_objs[obj_key]
+
+        # save changes to file
+        storage.save()        
+                       
     @staticmethod
     def extract_call_and_args(call_line):
         """ static method to extract call and argumetns out of Class
@@ -316,6 +401,11 @@ class HBNBCommand(cmd.Cmd):
         call = call_line[:i]
         args = call_line[i + 1:].strip(")")
         args_list = [arg.strip() for arg in args.split(",")]
+        # arguments may be passed with quotation marks, they should be striped
+        print(args_list)
+        for i in range(len(args_list)):
+            args_list[i] = args_list[i].replace('"', '')
+        print(args_list)
         return (call, args_list)
 
 if __name__ == '__main__':
