@@ -6,7 +6,7 @@
 import cmd
 from models import storage
 from models.base_model import BaseModel
-
+import re
 
 class HBNBCommand(cmd.Cmd):
     """ Command Processor inhereited from Cmd class to enable manipulating
@@ -423,18 +423,21 @@ class HBNBCommand(cmd.Cmd):
 
         # check attribute name presence
         if len(args_list) < 2:
-            print("** attribute name missing **")
+            print("** attribute name missing, No dictionary is found **")
             return
 
-        # check attribute value presence
-        if len(args_list) < 3:
-            print("** value missing **")
-            return
-
-        # set attribute with given value
-        print(obj)
-        print(type(obj))
-        setattr(obj, args_list[1], args_list[2])
+        # check if second arg is dictionary
+        print(args_list)
+        if type(eval(args_list[1])) == dict:
+            attr_dict = eval(args_list[1])
+            print(attr_dict)
+        else:
+            # check attribute value presence
+            if len(args_list) < 3:
+                print("** value missing **")
+                return
+            # set attribute with given value
+            setattr(obj, args_list[1], args_list[2])
 
         # save changes to file
         storage.save()
@@ -456,10 +459,19 @@ class HBNBCommand(cmd.Cmd):
             return (None, None)
         call = call_line[:i]
         args = call_line[i + 1:].strip(")")
+        """
         args_list = [arg.strip() for arg in args.split(",")]
         # arguments may be passed with quotation marks, they should be striped
         for i in range(len(args_list)):
             args_list[i] = args_list[i].replace('"', '')
+        """
+        pattern = r'[^,{}]+|{[^{}]+}'
+        args = args.replace(" ","")
+        args_list = re.findall(pattern, args)
+        # strip leading whitspaces and quotation marks if found
+        for i in range(len(args_list)):
+            args_list[i] = args_list[i].strip()
+            args_list[i] = args_list[i].replace('"','')
         return (call, args_list)
 
 if __name__ == '__main__':
