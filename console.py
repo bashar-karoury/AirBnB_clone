@@ -66,15 +66,17 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         # check if first arg represent a valid class
+        class_name = args[0]
         try:
-            if not isinstance(eval(args[0] + "()"), BaseModel):
+            if (class_name not in globals() 
+            or not issubclass(globals()[class_name], BaseModel)):
                 print("** class doesn't exist **")
                 return
-        except NameError:
+        except Exception:
             print("** class doesn't exist **")
             return
-
-        obj = eval(args[0] + "()")
+        cls = globals()[class_name]
+        obj = cls()
         # relaod from file
         storage.reload()
 
@@ -108,11 +110,13 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         # check if first arg represent a valid class
+        class_name = args[0]
         try:
-            if not isinstance(eval(args[0] + "()"), BaseModel):
+            if (class_name not in globals()
+            or not issubclass(globals()[class_name], BaseModel)):
                 print("** class doesn't exist **")
                 return
-        except NameError:
+        except Exception:
             print("** class doesn't exist **")
             return
 
@@ -125,7 +129,8 @@ class HBNBCommand(cmd.Cmd):
 
         # get all dictionary
         all_objs = storage.all()
-        obj_key = args[0] + "." + args[1]
+        obj_id = args[1]
+        obj_key = class_name + "." + obj_id
         if obj_key in all_objs:
             print(all_objs[obj_key])
         else:
@@ -150,11 +155,13 @@ class HBNBCommand(cmd.Cmd):
         # check class name
         if args:
             # check if first arg represent a valid class
+            class_name = args[0]
             try:
-                if not isinstance(eval(args[0] + "()"), BaseModel):
+                if (class_name not in globals()
+                or not issubclass(globals()[class_name], BaseModel)):
                     print("** class doesn't exist **")
                     return
-            except NameError:
+            except Exception:
                 print("** class doesn't exist **")
                 return
         # reload from file
@@ -165,7 +172,7 @@ class HBNBCommand(cmd.Cmd):
         if args:
             # there is class name provided
             
-            print([str(all_objs[k]) for k in all_objs if args[0] + "." in k])
+            print([str(all_objs[k]) for k in all_objs if class_name + "." in k])
         else:
             print([str(all_objs[k]) for k in all_objs])
 
@@ -187,15 +194,17 @@ class HBNBCommand(cmd.Cmd):
         # tokenize read line
         args = line.split()
 
-        # check class name
+        # check if first arg represent a valid class
         if not args:
-            print("** class name missing **")
+            print("** class doesn't exist **")
             return
+        class_name = args[0]
         try:
-            if not isinstance(eval(args[0] + "()"), BaseModel):
+            if (class_name not in globals()
+            or not issubclass(globals()[class_name], BaseModel)):
                 print("** class doesn't exist **")
                 return
-        except NameError:
+        except Exception:
             print("** class doesn't exist **")
             return
 
@@ -208,7 +217,8 @@ class HBNBCommand(cmd.Cmd):
 
         # get all dictionary
         all_objs = storage.all()
-        obj_key = args[0] + "." + args[1]
+        obj_id = args[1]
+        obj_key = class_name + "." + obj_id
         if obj_key not in all_objs:
             print("** no instance found **")
             return
@@ -225,7 +235,9 @@ class HBNBCommand(cmd.Cmd):
             return
 
         # set attribute with given value
-        setattr(obj, args[2], args[3])
+        att_name = args[2]
+        att_value
+        setattr(obj, att_name, att_value)
 
         # save changes to file
         storage.save()
@@ -246,16 +258,17 @@ class HBNBCommand(cmd.Cmd):
         """
         # tokenize read line
         args = line.split()
-
-        # check class name
+        # check if first arg represent a valid class
         if not args:
-            print("** class name missing **")
+            print("** class doesn't exist **")
             return
+        class_name = args[0]
         try:
-            if not isinstance(eval(args[0] + "()"), BaseModel):
+            if (class_name not in globals()
+            or not issubclass(globals()[class_name], BaseModel)):
                 print("** class doesn't exist **")
                 return
-        except NameError:
+        except Exception:
             print("** class doesn't exist **")
             return
 
@@ -268,7 +281,8 @@ class HBNBCommand(cmd.Cmd):
 
         # get all dictionary
         all_objs = storage.all()
-        obj_key = args[0] + "." + args[1]
+        obj_id = args[1]
+        obj_key = class_name + "." + obj_id
         if obj_key not in all_objs:
             print("** no instance found **")
             return
