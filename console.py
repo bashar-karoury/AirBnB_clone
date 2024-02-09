@@ -325,9 +325,7 @@ class HBNBCommand(cmd.Cmd):
         # validate call
         # strip call from arguments
         call, args_list = HBNBCommand.extract_call_and_args(call_line)
-        print(call)
-        print(args_list)
-        
+
         # check call
         if call == "all":
             HBNBCommand.all(class_name)
@@ -489,7 +487,6 @@ class HBNBCommand(cmd.Cmd):
         if type(eval(args_list[1])) == dict:
             attr_dict = eval(args_list[1])
             for key, value in attr_dict.items():
-                print("{}:{}".format(key, value))
                 setattr(obj, key, value)
         else:
             # check attribute value presence
@@ -523,12 +520,6 @@ class HBNBCommand(cmd.Cmd):
             return (None, None)
         call = call_line[:i]
         args = call_line[i + 1:].strip(")")
-        """
-        args_list = [arg.strip() for arg in args.split(",")]
-        # arguments may be passed with quotation marks, they should be striped
-        for i in range(len(args_list)):
-            args_list[i] = args_list[i].replace('"', '')
-        """
         pattern = r'[^,{}]+|{[^{}]+}'
         args = args.replace(" ","")
         args_list = re.findall(pattern, args)

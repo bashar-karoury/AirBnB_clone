@@ -33,7 +33,9 @@ class FileStorage():
                 json_dict = json.load(file)
                 temp_objs = {}
                 for key, value in json_dict.items():
-                    temp_objs[key] = BaseModel(**value)
+                    class_name, obj_id = key.split(".")
+                    clas = eval(class_name)
+                    temp_objs[key] = clas(**value)
                 self.__objects = temp_objs
         except Exception as e:
             print(e)
