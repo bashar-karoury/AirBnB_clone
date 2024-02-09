@@ -32,12 +32,8 @@ class FileStorage():
             with open(self.__file_path, 'r') as file:
                 json_dict = json.load(file)
                 temp_objs = {}
-                print("Constructing objects from dictionaries")
                 for key, value in json_dict.items():
                     temp_objs[key] = BaseModel(**value)
-                print("Here comes reloaded objects")
-                print(temp_objs)
-                print("finished")
                 self.__objects = temp_objs
         except Exception as e:
             print(e)

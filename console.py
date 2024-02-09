@@ -75,7 +75,9 @@ class HBNBCommand(cmd.Cmd):
             return
 
         obj = eval(args[0] + "()")
-        print(type(obj))
+        # relaod from file
+        storage.reload()
+
         # save it to dictionary of objects
         storage.new(obj)
 
@@ -162,9 +164,10 @@ class HBNBCommand(cmd.Cmd):
         all_objs = storage.all()
         if args:
             # there is class name provided
-            print([all_objs[k] for k in all_objs if args[0] + "." in k])
+            
+            print([str(all_objs[k]) for k in all_objs if args[0] + "." in k])
         else:
-            print(list(all_objs.values()))
+            print([str(all_objs[k]) for k in all_objs])
 
     def help_all(self):
         """ Prints all string representation of all instances based
@@ -201,21 +204,16 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         # reload from file
-        print("reloading")
         storage.reload()
 
         # get all dictionary
         all_objs = storage.all()
-        print(all_objs) 
         obj_key = args[0] + "." + args[1]
-        print(obj_key)
         if obj_key not in all_objs:
             print("** no instance found **")
             return
         # get object reference
         obj = all_objs[obj_key]
-        print("obj_key = {} with type {}".format(obj_key, type(obj_key)))
-        print("obj = {} with type {}".format(obj, type(obj)))
         # check attribute name presence
         if len(args) < 3:
             print("** attribute name missing **")
