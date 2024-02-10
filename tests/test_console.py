@@ -198,3 +198,102 @@ class Testing_console(unittest.TestCase):
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
 
 
+    def test_destroy_no_class(self):
+        """ test quit command
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            console.HBNBCommand().onecmd("destroy")
+            self.assertEqual(f.getvalue(),"** class name missing **\n")
+
+    def test_destroy_no_id(self):
+        """ test quit command
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            console.HBNBCommand().onecmd("destroy BaseClass")
+            self.assertEqual(f.getvalue(),"** instance id missing **\n")
+
+    def test_destroy_Wrong_class(self):
+        """ test quit command
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            console.HBNBCommand().onecmd("destroy MyClass")
+            self.assertEqual(f.getvalue(),"** class doesn't exist **\n")
+
+    def test_destroy_Wrong_id(self):
+        """ test quit command
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            console.HBNBCommand().onecmd("destroy BaseModel 0000-0000")
+            self.assertEqual(f.getvalue(),"** no instance found **\n")
+
+    def test_destroy_BaseClass(self):
+        """ test quit command
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            console.HBNBCommand().onecmd("create BaseModel")
+            obj_id = f.getvalue()
+            console.HBNBCommand().onecmd("destroy BaseModel " + obj_id)
+            console.HBNBCommand().onecmd("show BaseModel " + obj_id)
+            self.assertEqual(f.getvalue(),"** no instance found **\n")
+
+    def test_destroy_User(self):
+        """ test quit command
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            console.HBNBCommand().onecmd("create User")
+            obj_id = f.getvalue()
+            console.HBNBCommand().onecmd("destroy User " + obj_id)
+            console.HBNBCommand().onecmd("show User " + obj_id)
+            self.assertEqual(f.getvalue(),"** no instance found **\n")
+
+    def test_destroy_Place(self):
+        """ test quit command
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            console.HBNBCommand().onecmd("create Place")
+            obj_id = f.getvalue()
+            console.HBNBCommand().onecmd("destroy Place " + obj_id)
+            console.HBNBCommand().onecmd("show Place " + obj_id)
+            self.assertEqual(f.getvalue(),"** no instance found **\n")
+
+    def test_destroy_State(self):
+        """ test quit command
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            console.HBNBCommand().onecmd("create State")
+            obj_id = f.getvalue()
+            console.HBNBCommand().onecmd("destroy State " + obj_id)
+            console.HBNBCommand().onecmd("show State " + obj_id)
+            self.assertEqual(f.getvalue(),"** no instance found **\n")
+
+    def test_destroy_City(self):
+        """ test quit command
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            console.HBNBCommand().onecmd("create City")
+            obj_id = f.getvalue()
+            console.HBNBCommand().onecmd("destroy City " + obj_id)
+            console.HBNBCommand().onecmd("show City " + obj_id)
+            self.assertEqual(f.getvalue(),"** no instance found **\n")
+
+    def test_destroy_Amenity(self):
+        """ test quit command
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            console.HBNBCommand().onecmd("create Amenity")
+            obj_id = f.getvalue()
+            console.HBNBCommand().onecmd("destroy Amenity " + obj_id)
+            console.HBNBCommand().onecmd("show Amenity " + obj_id)
+            self.assertEqual(f.getvalue(),"** no instance found **\n")
+
+    def test_destroy_Review(self):
+        """ test quit command
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            console.HBNBCommand().onecmd("create Review")
+            obj_id = f.getvalue()
+            console.HBNBCommand().onecmd("destroy Review " + obj_id)
+            console.HBNBCommand().onecmd("show Review " + obj_id)
+            self.assertEqual(f.getvalue(),"** no instance found **\n")
+
+
