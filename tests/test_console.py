@@ -117,7 +117,7 @@ class Testing_console(unittest.TestCase):
         """ test quit command
         """
         with patch('sys.stdout', new=StringIO()) as f:
-            console.HBNBCommand().onecmd("show BaseClass")
+            console.HBNBCommand().onecmd("show BaseModel")
             self.assertEqual(f.getvalue(),"** instance id missing **\n")
 
     def test_show_Wrong_class(self):
@@ -134,12 +134,14 @@ class Testing_console(unittest.TestCase):
             console.HBNBCommand().onecmd("show BaseModel 0000-0000")
             self.assertEqual(f.getvalue(),"** no instance found **\n")
 
-    def test_show_BaseClass(self):
+    def test_show_Base_Model(self):
         """ test quit command
         """
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create BaseModel")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("show BaseModel " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
 
@@ -149,6 +151,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create User")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("show User " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
 
@@ -158,6 +162,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create Place")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("show Place " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
 
@@ -167,6 +173,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create State")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("show State " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
 
@@ -176,6 +184,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create City")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("show City " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
 
@@ -185,6 +195,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create Amenity")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("show Amenity " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
 
@@ -194,6 +206,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create Review")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("show Review " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
 
@@ -209,7 +223,7 @@ class Testing_console(unittest.TestCase):
         """ test quit command
         """
         with patch('sys.stdout', new=StringIO()) as f:
-            console.HBNBCommand().onecmd("destroy BaseClass")
+            console.HBNBCommand().onecmd("destroy BaseModel")
             self.assertEqual(f.getvalue(),"** instance id missing **\n")
 
     def test_destroy_Wrong_class(self):
@@ -226,12 +240,14 @@ class Testing_console(unittest.TestCase):
             console.HBNBCommand().onecmd("destroy BaseModel 0000-0000")
             self.assertEqual(f.getvalue(),"** no instance found **\n")
 
-    def test_destroy_BaseClass(self):
+    def test_destroy_BaseModel(self):
         """ test quit command
         """
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create BaseModel")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("destroy BaseModel " + obj_id)
             console.HBNBCommand().onecmd("show BaseModel " + obj_id)
             self.assertEqual(f.getvalue(),"** no instance found **\n")
@@ -242,6 +258,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create User")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("destroy User " + obj_id)
             console.HBNBCommand().onecmd("show User " + obj_id)
             self.assertEqual(f.getvalue(),"** no instance found **\n")
@@ -252,6 +270,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create Place")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("destroy Place " + obj_id)
             console.HBNBCommand().onecmd("show Place " + obj_id)
             self.assertEqual(f.getvalue(),"** no instance found **\n")
@@ -262,6 +282,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create State")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("destroy State " + obj_id)
             console.HBNBCommand().onecmd("show State " + obj_id)
             self.assertEqual(f.getvalue(),"** no instance found **\n")
@@ -272,6 +294,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create City")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("destroy City " + obj_id)
             console.HBNBCommand().onecmd("show City " + obj_id)
             self.assertEqual(f.getvalue(),"** no instance found **\n")
@@ -282,9 +306,11 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create Amenity")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("destroy Amenity " + obj_id)
             console.HBNBCommand().onecmd("show Amenity " + obj_id)
-            self.assertEqual(f.getvalue(),"** no instance found **\n")
+            self.assertEqual(f.getvalue(), "** no instance found **\n")
 
     def test_destroy_Review(self):
         """ test quit command
@@ -292,6 +318,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create Review")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("destroy Review " + obj_id)
             console.HBNBCommand().onecmd("show Review " + obj_id)
             self.assertEqual(f.getvalue(),"** no instance found **\n")
@@ -372,7 +400,7 @@ class Testing_console(unittest.TestCase):
         """ test quit command
         """
         with patch('sys.stdout', new=StringIO()) as f:
-            console.HBNBCommand().onecmd("update BaseClass")
+            console.HBNBCommand().onecmd("update BaseModel")
             self.assertEqual(f.getvalue(),"** instance id missing **\n")
 
     def test_update_Wrong_class(self):
@@ -393,26 +421,32 @@ class Testing_console(unittest.TestCase):
         """ test quit command
         """
         with patch('sys.stdout', new=StringIO()) as f:
-            console.HBNBCommand().onecmd("create BaseClass")
+            console.HBNBCommand().onecmd("create BaseModel")
             obj_id = f.getvalue()
-            console.HBNBCommand().onecmd("update BaseClass " + obj_id)
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
+            console.HBNBCommand().onecmd("update BaseModel " + obj_id)
             self.assertEqual(f.getvalue(),"** attribute name missing **\n")
 
     def test_update_no_attr_value(self):
         """ test quit command
         """
         with patch('sys.stdout', new=StringIO()) as f:
-            console.HBNBCommand().onecmd("create BaseClass")
+            console.HBNBCommand().onecmd("create BaseModel")
             obj_id = f.getvalue()
-            console.HBNBCommand().onecmd("update BaseClass " + obj_id + " n")
-            self.assertEqual(f.getvalue(),"** value missing **")
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
+            console.HBNBCommand().onecmd("update BaseModel " + obj_id + " n")
+            self.assertEqual(f.getvalue(),"** value missing **\n")
 
-    def test_update_BaseClass(self):
+    def test_update_Base_Model(self):
         """ test quit command
         """
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create BaseModel")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("update BaseModel " + obj_id + "n 1")
             console.HBNBCommand().onecmd("show BaseModel " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
@@ -423,6 +457,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create User")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("update User " + obj_id + "n 1")
             console.HBNBCommand().onecmd("show User " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
@@ -433,6 +469,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create Place")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("update Place " + obj_id + "n 1")
             console.HBNBCommand().onecmd("show Place " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
@@ -443,6 +481,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create State")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("update State " + obj_id + "n 1")
             console.HBNBCommand().onecmd("show State " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
@@ -453,6 +493,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create City")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("update City " + obj_id + "n 1")
             console.HBNBCommand().onecmd("show City " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
@@ -463,7 +505,9 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create Amenity")
             obj_id = f.getvalue()
-            console.HBNBCommand().onecmd("update Amenity " + obj_id) + "n 1"
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
+            console.HBNBCommand().onecmd("update Amenity " + obj_id + "n 1")
             console.HBNBCommand().onecmd("show Amenity " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
 
@@ -473,6 +517,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create Review")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("update Review " + obj_id + "n 1")
             console.HBNBCommand().onecmd("show Review " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
@@ -541,7 +587,7 @@ class Testing_console(unittest.TestCase):
         """ test quit command
         """
         with patch('sys.stdout', new=StringIO()) as f:
-            console.HBNBCommand().onecmd("BaseClass.show()")
+            console.HBNBCommand().onecmd("BaseModel.show()")
             self.assertEqual(f.getvalue(),"** instance id missing **\n")
 
     def test_class_show_Wrong_class(self):
@@ -555,10 +601,10 @@ class Testing_console(unittest.TestCase):
         """ test quit command
         """
         with patch('sys.stdout', new=StringIO()) as f:
-            console.HBNBCommand().onecmd("show BaseModel.show(\"0000-0000\")")
+            console.HBNBCommand().onecmd("BaseModel.show(\"0000-0000\")")
             self.assertEqual(f.getvalue(),"** no instance found **\n")
 
-    def test_class_show_BaseClass(self):
+    def test_class_show_Base_Model(self):
         """ test quit command
         """
         with patch('sys.stdout', new=StringIO()) as f:
@@ -625,7 +671,7 @@ class Testing_console(unittest.TestCase):
         """ test quit command
         """
         with patch('sys.stdout', new=StringIO()) as f:
-            console.HBNBCommand().onecmd("BaseClass.destroy()")
+            console.HBNBCommand().onecmd("BaseModel.destroy()")
             self.assertEqual(f.getvalue(),"** instance id missing **\n")
 
     def test_class_destroy_Wrong_class(self):
@@ -642,12 +688,14 @@ class Testing_console(unittest.TestCase):
             console.HBNBCommand().onecmd("BaseModel.destroy(\"0000-0000\")")
             self.assertEqual(f.getvalue(),"** no instance found **\n")
 
-    def test_class_destroy_BaseClass(self):
+    def test_class_destroy_Base_Model(self):
         """ test quit command
         """
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create BaseModel")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("BaseModel.destroy(\"{}\")".format(obj_id))
             console.HBNBCommand().onecmd("show BaseModel " + obj_id)
             self.assertEqual(f.getvalue(),"** no instance found **\n")
@@ -658,6 +706,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create User")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("User.destroy(\"{}\")".format(obj_id))
             console.HBNBCommand().onecmd("show User " + obj_id)
             self.assertEqual(f.getvalue(),"** no instance found **\n")
@@ -668,6 +718,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create Place")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("Place.destroy(\"{}\")".format(obj_id))
             console.HBNBCommand().onecmd("show Place " + obj_id)
             self.assertEqual(f.getvalue(),"** no instance found **\n")
@@ -678,6 +730,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create State")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("State.destroy(\"{}\")".format(obj_id))
             console.HBNBCommand().onecmd("show State " + obj_id)
             self.assertEqual(f.getvalue(),"** no instance found **\n")
@@ -688,6 +742,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create City")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("City.destroy(\"{}\")".format(obj_id))
             console.HBNBCommand().onecmd("show City " + obj_id)
             self.assertEqual(f.getvalue(),"** no instance found **\n")
@@ -698,9 +754,13 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create Amenity")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f2:
+            command = "Amenity.destroy(--\"{}\"--)".format(obj_id)
+            
             console.HBNBCommand().onecmd("Amenity.destroy(\"{}\")".format(obj_id))
             console.HBNBCommand().onecmd("show Amenity " + obj_id)
-            self.assertEqual(f.getvalue(),"** no instance found **\n")
+            self.assertEqual(f2.getvalue(),"** no instance found **\n")
 
     def test_class_destroy_Review(self):
         """ test quit command
@@ -708,6 +768,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create Review")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("Review.destroy(\"{}\")".format(obj_id))
             console.HBNBCommand().onecmd("show Review " + obj_id)
             self.assertEqual(f.getvalue(),"** no instance found **\n")
@@ -773,7 +835,7 @@ class Testing_console(unittest.TestCase):
         """ test quit command
         """
         with patch('sys.stdout', new=StringIO()) as f:
-            console.HBNBCommand().onecmd("BaseClass.update()")
+            console.HBNBCommand().onecmd("BaseModel.update()")
             self.assertEqual(f.getvalue(),"** instance id missing **\n")
 
     def test_class_update_Wrong_class(self):
@@ -794,27 +856,33 @@ class Testing_console(unittest.TestCase):
         """ test quit command
         """
         with patch('sys.stdout', new=StringIO()) as f:
-            console.HBNBCommand().onecmd("create BaseClass")
+            console.HBNBCommand().onecmd("create BaseModel")
             obj_id = f.getvalue()
-            console.HBNBCommand().onecmd("BaseClass.update(\"{}\")".format(obj_id))
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
+            console.HBNBCommand().onecmd("BaseModel.update(\"{}\")".format(obj_id))
             self.assertEqual(f.getvalue(),"** attribute name missing **\n")
 
     def test_class_update_no_attr_value(self):
         """ test quit command
         """
         with patch('sys.stdout', new=StringIO()) as f:
-            console.HBNBCommand().onecmd("create BaseClass")
+            console.HBNBCommand().onecmd("create BaseModel")
             obj_id = f.getvalue()
-            console.HBNBCommand().onecmd("BaseClass.update(\"{}\", \"key\")".format(obj_id))
-            self.assertEqual(f.getvalue(),"** value missing **")
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
+            console.HBNBCommand().onecmd("BaseModel.update(\"{}\", \"key\")".format(obj_id))
+            self.assertEqual(f.getvalue(),"** value missing **\n")
 
-    def test_class_update_BaseClass(self):
+    def test_class_update_Base_Model(self):
         """ test quit command
         """
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create BaseModel")
             obj_id = f.getvalue()
-            console.HBNBCommand().onecmd("BaseClass.update(\"{}\", \"key\" , \"value\")".format(obj_id))
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
+            console.HBNBCommand().onecmd("BaseModel.update(\"{}\", \"key\" , \"value\")".format(obj_id))
             console.HBNBCommand().onecmd("show BaseModel " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
 
@@ -824,6 +892,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create User")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("User.update(\"{}\", \"key\" , \"value\")".format(obj_id))
             console.HBNBCommand().onecmd("show User " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
@@ -834,6 +904,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create Place")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("Place.update(\"{}\", \"key\" , \"value\")".format(obj_id))
             console.HBNBCommand().onecmd("show Place " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
@@ -844,6 +916,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create State")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("State.update(\"{}\", \"key\" , \"value\")".format(obj_id))
             console.HBNBCommand().onecmd("show State " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
@@ -854,6 +928,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create City")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("City.update(\"{}\", \"key\" , \"value\")".format(obj_id))
             console.HBNBCommand().onecmd("show City " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
@@ -864,6 +940,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create Amenity")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("Amenity.update(\"{}\", \"key\" , \"value\")".format(obj_id))
             console.HBNBCommand().onecmd("show Amenity " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
@@ -874,6 +952,8 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create Review")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("Review.update(\"{}\", \"key\" , \"value\")".format(obj_id))
             console.HBNBCommand().onecmd("show Review " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
@@ -885,8 +965,10 @@ class Testing_console(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("create BaseModel")
             obj_id = f.getvalue()
+            obj_id = obj_id.replace('\n','')
+        with patch('sys.stdout', new=StringIO()) as f:
             console.HBNBCommand().onecmd("BaseModel.update(\"{}\", {{\"ke\":\"value\"}}".format(obj_id))
-            console.HBNBCommand().onecmd("show Review " + obj_id)
+            console.HBNBCommand().onecmd("show BaseModel " + obj_id)
             self.assertNotEqual(f.getvalue(),"** no instance found **\n")
 
 

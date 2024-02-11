@@ -202,7 +202,7 @@ class HBNBCommand(cmd.Cmd):
 
         # check if first arg represent a valid class
         if not args:
-            print("** class doesn't exist **")
+            print("** class name missing **")
             return
         class_name = args[0]
         try:
@@ -242,7 +242,7 @@ class HBNBCommand(cmd.Cmd):
 
         # set attribute with given value
         att_name = args[2]
-        att_value
+        att_value = args[3]
         setattr(obj, att_name, att_value)
 
         # save changes to file
@@ -266,7 +266,7 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         # check if first arg represent a valid class
         if not args:
-            print("** class doesn't exist **")
+            print("** class name missing **")
             return
         class_name = args[0]
         try:
@@ -487,7 +487,7 @@ class HBNBCommand(cmd.Cmd):
         
         # check attribute name presence
         if len(args_list) < 2:
-            print("** attribute name missing, No dictionary is found **")
+            print("** attribute name missing **")
             return
         # check if second arg is dictionary
         if type(eval(args_list[1])) == dict:
