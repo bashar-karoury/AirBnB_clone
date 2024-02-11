@@ -43,4 +43,4 @@ class FileStorage():
                     temp_objs[key] = clas(**value)
                 self.__objects = temp_objs
         except Exception as e:
-            print(e)
+            pass
