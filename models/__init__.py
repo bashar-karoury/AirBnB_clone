@@ -4,6 +4,7 @@
 import sys
 from models.engine.file_storage import FileStorage
 from .base_model import BaseModel
+from .user import User
 sys.path.insert(0, '../')  # Add the parent directory to the Python path
 storage = FileStorage()
 storage.reload()

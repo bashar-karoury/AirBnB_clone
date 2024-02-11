@@ -13,7 +13,11 @@ class FileStorage():
         return self.__objects
 
     def new(self, obj):
-        """sets a new object in __objects"""
+        """sets a new object in __objects
+
+            Args:
+                obj: object as subclass of BaseModel
+        """
         self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
 
     def save(self):
