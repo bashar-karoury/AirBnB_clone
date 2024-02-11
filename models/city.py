@@ -8,7 +8,7 @@ class City(BaseModel):
             state_id: str
             name: str
     """
-    stat_id = ""
+    state_id = ""
     name = ""
     def __init__(self, *args, **kwargs):
         """ initialization method

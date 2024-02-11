@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""
-    Command Interpreter to manipulate data without a visual interface
+""" Command Interpreter to manipulate data without a visual interface
     and as entry point of project
 """
 import cmd
