@@ -44,4 +44,3 @@ class Testing_User(unittest.TestCase):
         u1 = User()
         self.assertEqual(u1.last_name, "")
 
-
