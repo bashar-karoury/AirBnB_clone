@@ -29,6 +29,11 @@ class FileStorage():
         """deserializes the JSON file to __objects"""
         from ..base_model import BaseModel
         from ..user import User
+        from ..state import State
+        from ..city import City
+        from ..amenity import Amenity
+        from ..place import Place
+        from ..review import Review
         try:
             with open(self.__file_path, 'r') as file:
                 json_dict = json.load(file)
