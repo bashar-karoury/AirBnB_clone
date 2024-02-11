@@ -41,6 +41,16 @@ class Testing_BaseModel(unittest.TestCase):
         s2 = "[BaseModel] ({}) {}".format(b1.id, b1.__dict__)
         self.assertEqual(s1, s2)
 
+    def test_save(self):
+        """ test save method of BaseModel class creates created_at time
+        """
+        b1 = BaseModel()
+        import datetime
+        b1.save()
+        c1 = b1.created_at.isoformat()
+        c2 = b1.updated_at.isoformat()
+        self.assertGreater(c2, c1)
+
 
     def test_to_dict(self):
         """ test to_dict method of BaseModel class
