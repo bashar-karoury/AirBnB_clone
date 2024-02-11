@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """this is a file that contains City class"""
-from models import storage
 from models.base_model import BaseModel
 
 class City(BaseModel):
