@@ -8,7 +8,7 @@ sys.path.insert(0, '../')  # Add the parent directory to the Python path
 sys.path.insert(0, '../..')  # Add the parent directory to the Python path
 from models.user import User
 from models.base_model import BaseModel
-class Testing_BaseModel(unittest.TestCase):
+class Testing_User(unittest.TestCase):
     """ Unit testing class for User class
     """
 
@@ -16,8 +16,8 @@ class Testing_BaseModel(unittest.TestCase):
         """ test init method of User class
         """
         u1 = User()
-        self.assertEqual(type(b1).__name__,"User")
-        check = issubclass(BaseModel, u1)
+        self.assertEqual(type(u1).__name__,"User")
+        check = issubclass(type(u1), BaseModel)
         self.assertEqual(True, check)
 
     def test_init_email(self):
