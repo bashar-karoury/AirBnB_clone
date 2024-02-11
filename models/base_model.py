@@ -4,7 +4,6 @@
 """
 from uuid import uuid4
 from datetime import datetime
-from models import storage
 
 class BaseModel():
     """This is a base class for airbnb clone
@@ -22,6 +21,7 @@ class BaseModel():
                 kwargs: key value list as dictionary
         """
         if not kwargs:
+            from models import storage
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
@@ -37,6 +37,7 @@ class BaseModel():
     def save(self):
         """updates the public instance attribute updated_at
         """
+        from models import storage
         self.updated_at = datetime.now()
         storage.save()
 
