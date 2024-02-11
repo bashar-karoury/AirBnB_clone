@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""this is a file that contains User class"""
+"""this is a file that contains User class
+"""
 from models import storage
 from models.base_model import BaseModel
 
@@ -11,8 +12,13 @@ class User(BaseModel):
             first_name: str
             last_name: str
     """
+
     def __init__(self, *args, **kwargs):
         """ initialization method
+
+            Args:
+                args: tuple of arguments
+                kwargs: dictionary as key with value
         """
         super().__init__(args, kwargs)
         self.email = ""
