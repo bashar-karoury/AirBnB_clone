@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-
-"""this is a file that contains Base class"""
+""" this is a file that contains BaseModel class as the base of all other
+    classes.
+"""
 from uuid import uuid4
 from datetime import datetime
 from models import storage
