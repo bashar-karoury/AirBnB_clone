@@ -7,8 +7,8 @@ class State(BaseModel):
         public attributes:
             name: str
     """
+    name = ""
     def __init__(self, *args, **kwargs):
         """ initialization method
         """
         super().__init__(args, kwargs)
-        self.name = ""
