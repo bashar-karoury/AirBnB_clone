@@ -6,7 +6,6 @@ from uuid import uuid4
 from datetime import datetime
 from models import storage
 
-
 class BaseModel():
     """This is a base class for airbnb clone
     public attributes:
@@ -16,7 +15,12 @@ class BaseModel():
     """
 
     def __init__(self, *args, **kwargs):
-        """init method for our class"""
+        """init method for our class
+        
+            Args:
+                args: tuple of arguments
+                kwargs: key value list as dictionary
+        """
         if not kwargs:
             self.id = str(uuid4())
             self.created_at = datetime.now()
@@ -31,12 +35,16 @@ class BaseModel():
             self.__dict__.update(kwargs)
 
     def save(self):
-        """updates the public instance attribute updated_at"""
+        """updates the public instance attribute updated_at
+        """
         self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
-        """returns a dictionary containing all keys/values of instance"""
+        """returns a dictionary containing all keys/values of instance
+             
+            Returns: dictionary of obj for serialization
+        """
         dict_ = self.__dict__.copy()
         dict_["__class__"] = self.__class__.__name__
         dict_["created_at"] = self.created_at.isoformat()
@@ -44,7 +52,9 @@ class BaseModel():
         return dict_
 
     def __str__(self):
-        """String representaion of BaseModel"""
+        """String representaion of BaseModel
+        
+            Returns: string representation of object 
+        """
         return "[{}] ({}) {}".format(self.__class__.__name__,
                                      self.id, self.__dict__)
-

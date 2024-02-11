@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """this is a file that contains storage class"""
 import json
 
