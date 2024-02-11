@@ -5,12 +5,16 @@ from models.base_model import BaseModel
 
 class User(BaseModel):
     """ This is a user class for airbnb clone inherited from BaseModel
-        public attributes:
+        public class attributes:
             email: str
             password: str
             first_name: str
             last_name: str
     """
+    email = ""
+    password = ""
+    first_name = ""
+    last_name = ""
 
     def __init__(self, *args, **kwargs):
         """ initialization method
@@ -20,7 +24,3 @@ class User(BaseModel):
                 kwargs: dictionary as key with value
         """
         super().__init__(args, kwargs)
-        self.email = ""
-        self.password = ""
-        self.first_name = ""
-        self.last_name = ""
