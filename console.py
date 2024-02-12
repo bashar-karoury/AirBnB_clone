@@ -13,6 +13,8 @@ from models.place import Place
 from models.review import Review
 import re
 import json
+
+
 class HBNBCommand(cmd.Cmd):
     """ Command Processor inhereited from Cmd class to enable manipulating
         data without visual interface
@@ -73,8 +75,8 @@ class HBNBCommand(cmd.Cmd):
         # check if first arg represent a valid class
         class_name = args[0]
         try:
-            if (class_name not in globals() 
-            or not issubclass(globals()[class_name], BaseModel)):
+            if (class_name not in globals()
+                    or not issubclass(globals()[class_name], BaseModel)):
                 print("** class doesn't exist **")
                 return
         except Exception:
@@ -118,7 +120,7 @@ class HBNBCommand(cmd.Cmd):
         class_name = args[0]
         try:
             if (class_name not in globals()
-            or not issubclass(globals()[class_name], BaseModel)):
+                    or not issubclass(globals()[class_name], BaseModel)):
                 print("** class doesn't exist **")
                 return
         except Exception:
@@ -133,11 +135,11 @@ class HBNBCommand(cmd.Cmd):
         # storage.reload()
 
         # get all dictionary
-        all_objs = storage.all()
+        objs = storage.all()
         obj_id = args[1]
         obj_key = class_name + "." + obj_id
-        if obj_key in all_objs:
-            print(all_objs[obj_key])
+        if obj_key in objs:
+            print(objs[obj_key])
         else:
             print("** no instance found **")
 
@@ -163,7 +165,7 @@ class HBNBCommand(cmd.Cmd):
             class_name = args[0]
             try:
                 if (class_name not in globals()
-                or not issubclass(globals()[class_name], BaseModel)):
+                        or not issubclass(globals()[class_name], BaseModel)):
                     print("** class doesn't exist **")
                     return
             except Exception:
@@ -173,13 +175,13 @@ class HBNBCommand(cmd.Cmd):
         # storage.reload()
 
         # get all dictionary
-        all_objs = storage.all()
+        objs = storage.all()
         if args:
             # there is class name provided
-            
-            print([str(all_objs[k]) for k in all_objs if class_name + "." in k])
+
+            print([str(objs[k]) for k in objs if class_name + "." in k])
         else:
-            print([str(all_objs[k]) for k in all_objs])
+            print([str(objs[k]) for k in objs])
 
     def help_all(self):
         """ Prints all string representation of all instances based
@@ -206,7 +208,7 @@ class HBNBCommand(cmd.Cmd):
         class_name = args[0]
         try:
             if (class_name not in globals()
-            or not issubclass(globals()[class_name], BaseModel)):
+                    or not issubclass(globals()[class_name], BaseModel)):
                 print("** class doesn't exist **")
                 return
         except Exception:
@@ -221,14 +223,14 @@ class HBNBCommand(cmd.Cmd):
         # storage.reload()
 
         # get all dictionary
-        all_objs = storage.all()
+        objs = storage.all()
         obj_id = args[1]
         obj_key = class_name + "." + obj_id
-        if obj_key not in all_objs:
+        if obj_key not in objs:
             print("** no instance found **")
             return
         # get object reference
-        obj = all_objs[obj_key]
+        obj = objs[obj_key]
         # check attribute name presence
         if len(args) < 3:
             print("** attribute name missing **")
@@ -270,7 +272,7 @@ class HBNBCommand(cmd.Cmd):
         class_name = args[0]
         try:
             if (class_name not in globals()
-            or not issubclass(globals()[class_name], BaseModel)):
+                    or not issubclass(globals()[class_name], BaseModel)):
                 print("** class doesn't exist **")
                 return
         except Exception:
@@ -285,14 +287,14 @@ class HBNBCommand(cmd.Cmd):
         # storage.reload()
 
         # get all dictionary
-        all_objs = storage.all()
+        objs = storage.all()
         obj_id = args[1]
         obj_key = class_name + "." + obj_id
-        if obj_key not in all_objs:
+        if obj_key not in objs:
             print("** no instance found **")
             return
         # delete object
-        del all_objs[obj_key]
+        del objs[obj_key]
 
         # save changes to file
         storage.save()
@@ -304,7 +306,6 @@ class HBNBCommand(cmd.Cmd):
         print("Usage:")
         print("destroy [Classname] [id]")
 
-    
     def default(self, line):
         """ handler of other Commands
 
@@ -320,7 +321,7 @@ class HBNBCommand(cmd.Cmd):
         # validate class name
         try:
             if (class_name not in globals()
-            or not issubclass(globals()[class_name], BaseModel)):
+                    or not issubclass(globals()[class_name], BaseModel)):
                 print("** class doesn't exist **")
                 return
         except Exception:
@@ -347,47 +348,46 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("undefined call")
 
-    @staticmethod    
+    @staticmethod
     def all(class_name):
         """ helper function to list all objects of specific class
-            
+
             Args:
                 class_name (str): name of class
         """
-        # reload from file 
+        # reload from file
         # storage.reload()
 
         # get all dictionary
-        all_objs = storage.all()
+        objs = storage.all()
 
         # there is class name provided
-        print([str(all_objs[k]) for k in all_objs if class_name + "." in k])
- 
-    @staticmethod    
+        print([str(objs[k]) for k in objs if class_name + "." in k])
+
+    @staticmethod
     def count(class_name):
         """ helper function to count all objects of specific class
-            
+
             Args:
                 class_name (str): name of class
         """
-        # reload from file 
+        # reload from file
         # storage.reload()
 
         # get all dictionary
-        all_objs = storage.all()
+        objs = storage.all()
 
         # there is class name provided
-        print(len([all_objs[k] for k in all_objs if class_name + "." in k]))
- 
+        print(len([objs[k] for k in objs if class_name + "." in k]))
 
-    @staticmethod    
+    @staticmethod
     def create(class_name):
         """ helper function to list all objects of specific class
-            
+
             Args:
                 class_name (str): name of class
         """
-        # reload from file 
+        # reload from file
         # storage.reload()
 
         obj = globals()[class_name]()
@@ -398,12 +398,12 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
         # print id
-        print(obj.id) 
+        print(obj.id)
 
-    @staticmethod    
+    @staticmethod
     def show(class_name, args_list):
         """ helper function to print object with specific id
-            
+
             Args:
                 class_name (str): name of class
                 args_list (list): list of arguments provided to show
@@ -412,55 +412,55 @@ class HBNBCommand(cmd.Cmd):
         if len(args_list) < 1:
             print("** instance id missing **")
             return
-        # reload from file 
+        # reload from file
         # storage.reload()
-       # get all dictionary
-        all_objs = storage.all()
+        # get all dictionary
+        objs = storage.all()
         obj_id = args_list[0]
         # strip '"' out of id
-        obj_id = args_list[0].replace('"','')
+        obj_id = args_list[0].replace('"', '')
 
         obj_key = class_name + "." + obj_id
-        if obj_key in all_objs:
-            print(all_objs[obj_key])
+        if obj_key in objs:
+            print(objs[obj_key])
         else:
-            print("** no instance found **")   
-  
-    @staticmethod    
+            print("** no instance found **")
+
+    @staticmethod
     def destroy(class_name, args_list):
         """ helper function to destroy object with specific id
-            
+
             Args:
                 class_name (str): name of class
                 args_list (list): list of arguments provided to show
         """
-       # check id presence
+        # check id presence
         if len(args_list) < 1:
             print("** instance id missing **")
             return
-        # reload from file 
+        # reload from file
         # storage.reload()
 
         # get all dictionary
-        all_objs = storage.all()
+        objs = storage.all()
         obj_id = args_list[0]
         # strip '"' out of id
-        obj_id = args_list[0].replace('"','')
+        obj_id = args_list[0].replace('"', '')
 
         obj_key = class_name + "." + obj_id
-        if obj_key not in all_objs:
+        if obj_key not in objs:
             print("** no instance found **")
             return
         # delete object
-        del all_objs[obj_key]
+        del objs[obj_key]
 
         # save changes to file
-        storage.save()        
- 
-    @staticmethod    
+        storage.save()
+
+    @staticmethod
     def update(class_name, args_list):
         """ helper function to update object with specific id
-            
+
             Args:
                 class_name (str): name of class
                 args_list (list): list of arguments provided to update
@@ -474,16 +474,16 @@ class HBNBCommand(cmd.Cmd):
         # reload to update dict of objects
         # storage.reload()
         # get all dictionary
-        all_objs = storage.all()
+        objs = storage.all()
         # strip '"' out of id
-        obj_id = args_list[0].replace('"','')
+        obj_id = args_list[0].replace('"', '')
         obj_key = class_name + "." + obj_id
-        if obj_key not in all_objs:
+        if obj_key not in objs:
             print("** no instance found **")
             return
         # get object reference
-        obj = all_objs[obj_key]
-        
+        obj = objs[obj_key]
+
         # check attribute name presence
         if len(args_list) < 2:
             print("** attribute name missing **")
@@ -508,7 +508,6 @@ class HBNBCommand(cmd.Cmd):
         # save changes to file
         storage.save()
 
-                       
     @staticmethod
     def extract_call_and_args(call_line):
         """ static method to extract call and argumetns out of Class
@@ -516,7 +515,7 @@ class HBNBCommand(cmd.Cmd):
 
             Args:
                 call_line (str): call line after the '.'
-        
+
             Return:
                 tuple: contains the call and list of arguments to the call
         """
@@ -526,13 +525,13 @@ class HBNBCommand(cmd.Cmd):
         call = call_line[:i]
         args = call_line[i + 1:].strip(")")
         pattern = r'[^,{}]+|{[^{}]+}'
-        args = args.replace(" ","")
+        args = args.replace(" ", "")
         args_list = re.findall(pattern, args)
         # strip leading whitspaces and quotation marks if found
         for i in range(len(args_list)):
             args_list[i] = args_list[i].strip()
         return (call, args_list)
 
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-

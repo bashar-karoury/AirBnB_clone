@@ -2,6 +2,7 @@
 """this is a file that contains Place class"""
 from models.base_model import BaseModel
 
+
 class Place(BaseModel):
     """ This is a Place class for airbnb clone inherited from BaseModel
         public attributes:
@@ -33,4 +34,3 @@ class Place(BaseModel):
         """ initialization method
         """
         super().__init__(args, kwargs)
-

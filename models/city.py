@@ -2,6 +2,7 @@
 """this is a file that contains City class"""
 from models.base_model import BaseModel
 
+
 class City(BaseModel):
     """ This is a city class for airbnb clone inherited from BaseModel
         public attributes:
@@ -10,6 +11,7 @@ class City(BaseModel):
     """
     state_id = ""
     name = ""
+
     def __init__(self, *args, **kwargs):
         """ initialization method
         """

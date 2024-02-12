@@ -3,6 +3,7 @@
 """
 from models.base_model import BaseModel
 
+
 class User(BaseModel):
     """ This is a user class for airbnb clone inherited from BaseModel
         public class attributes:
@@ -24,3 +25,11 @@ class User(BaseModel):
                 kwargs: dictionary as key with value
         """
         super().__init__(args, kwargs)
+
+    def __str__(self):
+        """String representaion of User
+
+            Returns: string representation of object
+        """
+        return "[{}] ({}) {}".format(self.__class__.__name__,
+                                     self.id, self.__dict__)

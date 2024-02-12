@@ -5,6 +5,7 @@
 from uuid import uuid4
 from datetime import datetime
 
+
 class BaseModel():
     """This is a base class for airbnb clone
     public attributes:
@@ -15,7 +16,7 @@ class BaseModel():
 
     def __init__(self, *args, **kwargs):
         """init method for our class
-        
+
             Args:
                 args: tuple of arguments
                 kwargs: key value list as dictionary
@@ -43,7 +44,7 @@ class BaseModel():
 
     def to_dict(self):
         """returns a dictionary containing all keys/values of instance
-             
+
             Returns: dictionary of obj for serialization
         """
         dict_ = self.__dict__.copy()
@@ -54,8 +55,8 @@ class BaseModel():
 
     def __str__(self):
         """String representaion of BaseModel
-        
-            Returns: string representation of object 
+
+            Returns: string representation of object
         """
         return "[{}] ({}) {}".format(self.__class__.__name__,
                                      self.id, self.__dict__)

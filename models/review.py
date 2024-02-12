@@ -2,6 +2,7 @@
 """this is a file that contains Review class"""
 from models.base_model import BaseModel
 
+
 class Review(BaseModel):
     """ This is a Review class for airbnb clone inherited from BaseModel
         public attributes:
