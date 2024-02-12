@@ -83,7 +83,7 @@ class HBNBCommand(cmd.Cmd):
         cls = globals()[class_name]
         obj = cls()
         # relaod from file
-        storage.reload()
+        # storage.reload()
 
         # save it to dictionary of objects
         storage.new(obj)
@@ -130,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         # reload first
-        storage.reload()
+        # storage.reload()
 
         # get all dictionary
         all_objs = storage.all()
@@ -170,7 +170,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
         # reload from file
-        storage.reload()
+        # storage.reload()
 
         # get all dictionary
         all_objs = storage.all()
@@ -218,7 +218,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         # reload from file
-        storage.reload()
+        # storage.reload()
 
         # get all dictionary
         all_objs = storage.all()
@@ -282,7 +282,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         # reload from file
-        storage.reload()
+        # storage.reload()
 
         # get all dictionary
         all_objs = storage.all()
@@ -355,7 +355,7 @@ class HBNBCommand(cmd.Cmd):
                 class_name (str): name of class
         """
         # reload from file 
-        storage.reload()
+        # storage.reload()
 
         # get all dictionary
         all_objs = storage.all()
@@ -371,7 +371,7 @@ class HBNBCommand(cmd.Cmd):
                 class_name (str): name of class
         """
         # reload from file 
-        storage.reload()
+        # storage.reload()
 
         # get all dictionary
         all_objs = storage.all()
@@ -388,7 +388,7 @@ class HBNBCommand(cmd.Cmd):
                 class_name (str): name of class
         """
         # reload from file 
-        storage.reload()
+        # storage.reload()
 
         obj = globals()[class_name]()
         # save it to dictionary of objects
@@ -413,7 +413,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         # reload from file 
-        storage.reload()
+        # storage.reload()
        # get all dictionary
         all_objs = storage.all()
         obj_id = args_list[0]
@@ -439,7 +439,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         # reload from file 
-        storage.reload()
+        # storage.reload()
 
         # get all dictionary
         all_objs = storage.all()
@@ -472,7 +472,7 @@ class HBNBCommand(cmd.Cmd):
         # strip quotation marks from id
         # args_list[0].replace('"','')
         # reload to update dict of objects
-        storage.reload()
+        # storage.reload()
         # get all dictionary
         all_objs = storage.all()
         # strip '"' out of id
