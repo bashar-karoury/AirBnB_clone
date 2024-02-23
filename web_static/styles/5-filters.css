@@ -1,0 +1,57 @@
+/*Common styling*/
+
+.container section.filters {
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    height: 70px;
+    width: 100%;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    font-family: Circular,"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    position: relative;
+}
+
+section.filters button {
+    font-size: 18px;
+    background-color: #FF5A5F;
+    color: #FFFFFF;
+    height: 48px;
+    width: 20%;
+    border-radius: 4px;
+    border: 0;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    float: right;
+    margin-right: 30px;
+}
+
+section.filters div{
+    position: relative;
+    height: 100%;
+    width: 25%;
+}
+
+.locations, .amenities {
+    float: left;
+    color: #000000;
+    margin-left: 10%;
+    margin-top: 10px;
+}
+
+.locations{
+    border-right: #DDDDDD solid 1px;
+}
+
+h3 {
+    font-weight: 600;
+    line-height: 2px;
+}
+
+h4{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1px;
+}
