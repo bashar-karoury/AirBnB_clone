@@ -100,11 +100,13 @@ div.amenities:hover > .popover{
 li ul{
     list-style-type: none;
     padding-left:60px;
+    margin-top:0px;
   }
 
 ul {
     padding-left:0px;
     padding-top:0px;
+
 }
 
 li {
