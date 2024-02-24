@@ -1,0 +1,93 @@
+/*Common styling*/
+
+.container section.filters {
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    height: 70px;
+    width: 100%;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    font-family: Circular,"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    position: relative;
+}
+
+section.filters button {
+    font-size: 18px;
+    background-color: #FF5A5F;
+    color: #FFFFFF;
+    height: 48px;
+    width: 20%;
+    border-radius: 4px;
+    border: 0;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    float: right;
+    margin-right: 30px;
+}
+
+section.filters div{
+    position: relative;
+    height: 100%;
+    width: 25%;
+}
+
+div.locations, div.amenities {
+    display: block;
+    float: left;
+    color: #000000;
+    width: 30%;
+    margin:0;
+    padding:0;
+}
+
+.locations{
+    border-right: #DDDDDD solid 1px;
+}
+
+
+h2 {
+
+    font-size: 16px;
+}
+h3 {
+    font-weight: 600;
+    line-height: 2px;
+    display: block;
+    width: 100%;
+}
+
+h4{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1px;
+    display: block;
+    width: 100%;
+}
+
+
+.popover {
+    display: none;
+    clear:both;
+    list-style-type: none;
+    border :#DDDDDD solid 1px;
+    border-radius: 4px;
+    margin-top: 23%;
+    line-height: 15px;
+    padding:0;
+  }
+
+  .popover:hover {
+    clear:both;
+    list-style-type: none;
+    border :#DDDDDD solid 1px;
+    border-radius: 4px;
+    margin-top: 23%;
+    line-height: 15px;
+    padding:0;
+  }
+li {
+    list-style-type: none;
+  }
