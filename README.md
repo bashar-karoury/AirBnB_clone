@@ -5,9 +5,8 @@ A simplified **Airbnb Clone** web application built using **Python**, **HTML**, 
 ## 🌐 Technologies Used
 
 - **Frontend:** HTML, CSS, JavaScript
-- **Backend:** Python (Flask or Django, if applicable)
-- **Data Storage:** File-based (JSON) or SQLite (update if different)
-- **UI/UX:** Responsive layout and basic form validation
+- **Backend:** Python 
+- **Data Storage:** File-based (JSON)
 
 ## 🚀 Features
 
