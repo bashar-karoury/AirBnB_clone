@@ -4,7 +4,7 @@ A simplified **Airbnb Clone** web application built using **Python**, **HTML**, 
 
 ## 🌐 Technologies Used
 
-- **Frontend:** HTML, CSS, JavaScript
+- **Frontend:** HTML, CSS.
 - **Backend:** Python 
 - **Data Storage:** File-based (JSON)
 
